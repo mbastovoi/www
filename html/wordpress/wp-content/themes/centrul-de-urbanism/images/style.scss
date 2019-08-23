@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+  font-family: Oswald;
+}
+
+body {
+  margin: 0;
+}
+
+.archive-description {
+  margin-left: 13%;
+  display: block;
+}
+
+// Front page design
+
+.background {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  background-position: center;
+
+  &#first {
+    background-image: url(images/group.png);
+  }
+
+  &#second {
+    background-image: url(images/group2.png);
+    h3 {
+      width: 50%;
+      font-weight: 300;
+      font-size: 2.5rem;
+      line-height: 3rem;
+      text-align: center;
+      margin: auto;
+      color: #FFFFFF;
+    }
+  }
+
+  &#third {
+    background-color: #FF00C7;
+  }
+
+}
+
+#main-navigation {
+  height: 4.5rem;
+  width: 100%;
+  position: fixed;
+  transition-duration: 1s;
+  z-index: 10;
+  top: 0;
+  background-color: white;
+
+  ul {
+    height: 2rem;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    a {
+      text-decoration: none;
+      color: #565C5B;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 1.7rem;
+      transition: 1s;
+      &:hover {
+        color: #A3A9A8;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+#logo {
+  width: 60vw;
+  padding-left: 40vw;
+}
+
+// Blog page styles
+
+#blog-header {
+  width: 70%;
+  margin-left: 13%;
+  margin-top: 7rem;
+  font-weight: 600;
+  font-size: 3rem;
+  color: #565C5B;
+  display: inline-block;
+}
+
+.flex-container {
+  width: 70%;
+  margin: 5rem auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+
+  .post-item {
+      width: 17rem;
+      margin: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center;
+
+      &:nth-child(2n) {
+        color: #17282f;
+        &:hover {
+          color: #000;
+        }
+        .post-info {
+          a{
+            color: #17282f;
+            &:hover {
+              color: #000;
+            }
+          }
+        }
+
+        .color-filter {
+          background-color: rgba(118, 196, 209, 0.44);
+        }
+
+        flex-direction: column-reverse;
+
+        color: #1e313c;
+      }
+
+      &:nth-child(3n) {
+        color: #0b1e07;
+        .post-info {
+          a{
+            color: #0b1e07;
+            &:hover {
+              color: #000;
+            }
+            &:hover {
+              color: #000;
+            }
+          }
+        }
+
+        .color-filter {
+          background-color: rgba(48, 126, 19, 0.5);
+        }
+      }
+
+      .color-filter {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(240, 141, 185, 0.50);
+        position: absolute;
+        z-index: 2;
+      }
+      
+
+
+      &:hover {
+        box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.50);
+        transition: 0.5s;
+      }
+
+      .thumbnail {
+        img {
+          width: 17rem;
+          height: 15rem;
+          display: block;
+        }
+      }
+
+      .post-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        a {
+          text-decoration: none;
+          color: #2a181c;
+          font-family: Montserrat;
+        }
+
+        p {
+          color: #2a181c;
+          margin: 1rem;
+          font-weight: 400;
+          font-family: Montserrat;
+          font-size: 0.8rem;
+          position: relative;
+          z-index: 3;
+        }
+
+        .headline a {
+          font-size: 1.5rem;
+          font-weight: 400;
+          padding: 1rem;
+          font-family: Oswald;
+          position: relative;
+          z-index: 3;
+          display: inline-block;
+        }
+      }
+    }
+}
+
+.flex-container > .post-item > div:nth-child(2n) {
+  background: rgba(111, 240, 74, 0.58);
+}
+
+//Set Text Color
+//.echipa-background {
+//  background-color: #F08DB9;
+//  position: absolute;
+//  width: 100%;
+//  height: 100%;
+//  z-index: 0;
+//}
+
+//Echipa page archive style
+
+.flex-team-container {
+  width: 65%;
+  margin: 5rem auto;
+  display: flex;
+  flex-flow: column wrap;
+  padding: auto;
+  color: #454b4a;
+
+  .membru-item {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: #d7d7d7 solid 1px;
+    border-radius: 5px;
+    padding: 2rem;
+    margin: 1rem;
+
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+        }
+      }
+    a {
+      text-decoration: none;
+      color: #454b4a;
+    }
+    .thumbnail {
+      width: 20%;
+      img{
+      border-radius: 150px;
+      }
+    }
+    .post-info {
+      width: 60%;
+      .generic-content {
+        font-family: Montserrat;
+        font-weight: 200;
+      }
+    }
+  }
+
+// Single blog post layout
+
+.flex-container-post {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: 5rem auto;
+  justify-content: center;
+  align-items: center;
+}
+
+

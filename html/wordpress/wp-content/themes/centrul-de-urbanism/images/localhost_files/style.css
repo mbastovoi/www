@@ -1,0 +1,90 @@
+/*
+	Theme Name: Centrul de Urbanism
+
+	*/
+
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+    margin:0;
+    padding:0;
+}
+
+#main-navigation {
+	width: 96vw;
+	padding-top: 20px;
+	position: fixed;
+	top: 10px;
+	transition-duration: 1s;
+}
+
+#main-navigation > ul {
+	display: flex;
+	flex-direction: horizontal;
+	list-style-type: none;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+ul > li > a {
+	color: #FFFFFF;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: Oswald;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 2.6vw;
+	transition-duration: 1s;
+
+}
+
+a:hover {
+	color: #FFFF66;
+	transition-duration: 1s;
+}
+
+.background {
+	width: 99vw;
+	height: 100vh;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+    justify-content: center
+	background-position: center center;
+	
+}
+
+.first {
+	background-image: url(images/group.png);
+}
+
+.second {
+	background-image: url(images/group2.png);
+}
+
+.third {
+	background-color: rgba(255, 0, 199, 0.39);
+}
+
+#logo {
+	width: 60vw;
+	padding-left: 40vw; 
+	border: none;
+}
+
+.second > .description {
+	font-family: Oswald;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 3vw;
+	line-height: 5vw;
+	width: 70vw;
+	padding-left: 33vw;
+	color: white;
+	box-sizing: border-box;
+   
+}
+
