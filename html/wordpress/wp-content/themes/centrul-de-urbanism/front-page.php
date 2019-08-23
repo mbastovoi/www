@@ -2,7 +2,7 @@
  get_header() 
  ?>
 <div class="background" id="first">
-    <img id="logo" src="<?php echo THEME_IMG_PATH; ?>/logo-lg.png" alt="Smiley face">
+    <img id="logo" src="<?php echo THEME_IMG_PATH; ?>/logo-lg.png" alt="img-logo">
     <a class="down-arrow" id="click1" href="#"><img class="down-btn" src="<?php echo THEME_IMG_PATH; ?>/btndown.png" alt="button1"></a>
 </div>
 
