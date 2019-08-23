@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="<?php bloginfo('charset');?>">
-  <link href="http://localhost/wordpress/wp-content/themes/centrul-de-urbanism/style.css" rel="stylesheet" type="text/css">
+  <link href="<?php echo get_stylesheet_directory_uri(). '/style.css' ?>" rel="stylesheet" type="text/css">
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
