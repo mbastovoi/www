@@ -19,7 +19,7 @@
             <li><a href="<?php echo site_url('/contact') ?>">contact</a></li>
             <li><a href="https://www.patreon.com/centruldeurbanism">fii patron cu</a></li>
             </ul>
-            <div class="search-items">
+            <div  class="search-items">
                 <li class="search-box" id="trans-box"><?php get_search_form() ?></li>
                 <a class="search-button"><img class="search-btn" src="<?php echo THEME_IMG_PATH; ?>/search.png" alt=""></a>
                 <a class="close-button"><img class="close-btn" src="<?php echo THEME_IMG_PATH; ?>/close.png" alt=""></a>
