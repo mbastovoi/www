@@ -1000,7 +1000,7 @@ body {
 .contact-grid .footer-items {
   grid-template-columns: 1fr;
   margin-top: -2rem;
-  justify-self: flex-start;
+  justify-self: flex-end;
 }
 .contact-grid #map {
   height: 400px;
