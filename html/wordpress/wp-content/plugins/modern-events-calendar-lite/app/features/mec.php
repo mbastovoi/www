@@ -125,6 +125,9 @@ class MEC_feature_mec extends MEC_base
         // Scheduler Cronjob
         $schedule = $this->getSchedule();
         $this->factory->action('mec_scheduler', array($schedule, 'cron'));
+
+        $syncSchedule = $this->getSyncSchedule();
+        $this->factory->action('mec_syncScheduler', array($syncSchedule, 'sync'));
     }
 
     /* Activate License */

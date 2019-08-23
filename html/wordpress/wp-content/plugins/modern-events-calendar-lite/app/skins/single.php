@@ -77,6 +77,7 @@ class MEC_skin_single extends MEC_skins
      */    
     public function display_related_posts_widget($event_id)
     {
+        if ( !isset( $this->settings['related_events'] ) ) return;
         if ( isset( $this->settings['related_events'] ) && $this->settings['related_events'] != '1' ) return;
 
         $related_args = array(

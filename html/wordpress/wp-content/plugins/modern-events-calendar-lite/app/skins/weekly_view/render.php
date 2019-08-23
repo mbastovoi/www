@@ -75,6 +75,8 @@ $settings = $this->main->get_settings();
                     } 
                     $speakers = json_encode($speakers);
                 }
+            $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+            if($schema_settings == '1' ):
             ?>
             <script type="application/ld+json">
             {
@@ -101,6 +103,7 @@ $settings = $this->main->get_settings();
                 "url"			: "<?php echo $this->main->get_event_date_permalink($event->data->permalink, $event->date['start']['date']); ?>"
             }
             </script>
+            <?php endif; ?>
             <article data-style="<?php echo $label_style; ?>" class="mec-event-article <?php echo $this->get_event_classes($event); ?>">
                 <div class="mec-event-list-weekly-date mec-color"><span class="mec-date-day"><?php echo date_i18n('d', strtotime($event->date['start']['date'])); ?></span><?php echo date_i18n('F', strtotime($event->date['start']['date'])); ?></div>
                 <div class="mec-event-image"><?php echo $event->data->thumbnails['thumbnail']; ?></div>

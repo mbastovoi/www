@@ -37,7 +37,7 @@ defined('MECEXEC') or die();
                     </a>
                 </li>
 
-            <?php endif;?>
+            <?php endif; ?>
 
             <li class="wns-be-group-menu-li">
                 <a href="<?php echo $this->main->add_qs_var('tab', 'MEC-notifications'); ?>" id="" class="wns-be-group-tab-link-a">

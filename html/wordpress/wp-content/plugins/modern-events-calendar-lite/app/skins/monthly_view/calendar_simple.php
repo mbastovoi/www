@@ -105,6 +105,8 @@ elseif($week_start == 5) // Friday
                     $image = !empty($event->data->featured_image['full']) ? esc_html($event->data->featured_image['full']) : '' ;
                     $price_schema = isset($event->data->meta['mec_cost']) ? $event->data->meta['mec_cost'] : '' ; 
                     $currency_schema = isset($settings['currency']) ? $settings['currency'] : '' ;
+                    $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+                    if($schema_settings == '1' ):                    
                     echo '
                     <script type="application/ld+json">
                     {
@@ -132,6 +134,7 @@ elseif($week_start == 5) // Friday
                     }
                     </script>
                     ';
+                    endif;
                     echo '
                         <div class="tooltip_templates event-single-content-simple">
                             <div id="mec-tooltip-'.$event->data->ID.'-'.$day_id.'">

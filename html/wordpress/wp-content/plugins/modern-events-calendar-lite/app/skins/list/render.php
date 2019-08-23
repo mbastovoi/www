@@ -58,6 +58,8 @@ $event_colorskin = (isset($styling['mec_colorskin']) || isset($styling['color'])
 
                         $speakers = json_encode($speakers);
                     }
+            $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+            if($schema_settings == '1' ):
             ?>
             <script type="application/ld+json">
             {
@@ -84,6 +86,7 @@ $event_colorskin = (isset($styling['mec_colorskin']) || isset($styling['color'])
                 "url"			: "<?php echo $this->main->get_event_date_permalink($event->data->permalink, $event->date['start']['date']); ?>"
             }
             </script>
+            <?php endif; ?>
             <article data-style="<?php echo $label_style; ?>" class="mec-event-article mec-clear <?php echo $this->get_event_classes($event); ?> mec-divider-toggle mec-toggle-<?php echo date_i18n('Ym', strtotime($date)); ?>-<?php echo $this->id; ?>" itemscope>
                 <?php if($this->style == 'modern'): ?>
                     <div class="col-md-2 col-sm-2">

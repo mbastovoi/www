@@ -156,6 +156,7 @@ var mecSingleEventDisplayer = {
         var map;
         var infowindow;
         var loadedMarkers = new Array();
+        var markerCluster;
 
         var canvas = this;
         var DOM = canvas[0];
@@ -204,6 +205,29 @@ var mecSingleEventDisplayer = {
             // Load Markers
             loadMarkers(settings.markers);
 
+            var clusterCalculator = function(markers, numStyles)
+            {
+                var weight = 0;
+
+                for(var i = 0; i < markers.length; ++i)
+                {
+                    weight += markers[i].weight;
+                }
+
+                return {
+                    text: weight,
+                    index: Math.min(String(weight).length, numStyles)
+                };
+            };
+
+            markerCluster = new MarkerClusterer(map, null,
+            {
+                imagePath: settings.clustering_images
+            });
+
+            markerCluster.setCalculator(clusterCalculator);
+            markerCluster.addMarkers(loadedMarkers);
+
             // Initialize get direction feature
             if(settings.getDirection === 1) initSimpleGetDirection();
             else if(settings.getDirection === 2) initAdvancedGetDirection();
@@ -244,7 +268,8 @@ var mecSingleEventDisplayer = {
                     lightbox: dataMarker.lightbox,
                     icon: (dataMarker.icon ? dataMarker.icon : settings.icon),
                     content: '<div class="mec-marker-container"><span class="mec-marker-wrap"><span class="mec-marker">'+dataMarker.count+'</span><span class="mec-marker-pulse-wrap"><span class="mec-marker-pulse"></span></span></span></div>',
-                    shadow: 'none'
+                    shadow: 'none',
+                    weight: dataMarker.count
                 });
 
                 // Marker Info-Window
@@ -295,6 +320,10 @@ var mecSingleEventDisplayer = {
                     
                     // Load Markers
                     loadMarkers(response.markers);
+
+                    markerCluster.clearMarkers();
+                    markerCluster.addMarkers(loadedMarkers, false);
+                    markerCluster.redraw();
                     
                     // Remove loader
                     $("#mec_googlemap_canvas"+settings.id).removeClass("mec-loading");
@@ -985,6 +1014,7 @@ var mecSingleEventDisplayer = {
                             $("#mec_month_navigator_"+settings.id+"_"+response.current_month.id).hide();
                             $("#mec_month_side_"+settings.id+"_"+response.current_month.id).hide();
                         }
+                        if (typeof custom_month !== undefined) var custom_month;
                         if (typeof custom_month != undefined)
                         {
                             if (custom_month == 'true')
@@ -1089,13 +1119,48 @@ var mecSingleEventDisplayer = {
         function mec_tooltip()
         {
             if ($('.mec-monthly-tooltip').length > 1) {
-                $('.mec-monthly-tooltip').tooltipster({
-                    theme: 'tooltipster-shadow',
-                    interactive: true,
-                    delay: 100,
-                    minWidth: 350,
-                    maxWidth: 350,
-                });
+                if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 768) {
+                    $('.mec-monthly-tooltip').tooltipster({
+                        theme: 'tooltipster-shadow',
+                        interactive: true,
+                        delay: 100,
+                        minWidth: 350,
+                        maxWidth: 350
+                    });
+                } else {
+                    var touchtime = 0;
+                    $(".mec-monthly-tooltip").on("click", function (event) {
+                        event.preventDefault();
+                        if (touchtime == 0) {
+                            $('.mec-monthly-tooltip').tooltipster({
+                                theme: 'tooltipster-shadow',
+                                interactive: true,
+                                delay: 100,
+                                minWidth: 350,
+                                maxWidth: 350,
+                                trigger: "custom",
+                                triggerOpen: {
+                                    click: true,
+                                    tap: true
+                                },
+                                triggerClose: {
+                                    click: true,
+                                    tap: true
+                                }
+                            });
+                            touchtime = new Date().getTime();
+                        } else {
+                            if (((new Date().getTime()) - touchtime) < 200) {
+                                var el = $(this);
+                                var link = el.attr("href");
+                                window.location = link;
+                                touchtime = 0;
+                            } else {
+                                touchtime = new Date().getTime();
+                            }
+                        }
+                    });
+                }
             }
         }
     };
@@ -3413,17 +3478,17 @@ function mec_focus_week(id)
 
      $(document).ready(function($)
      {
-        let degree = $('.mec-weather-summary-temp');
-        let weather_extra = $('.mec-weather-extras');
-        let wind = weather_extra.children('.mec-weather-wind');
-        let visibility = weather_extra.children('.mec-weather-visibility');
+        var degree = $('.mec-weather-summary-temp');
+        var weather_extra = $('.mec-weather-extras');
+        var wind = weather_extra.children('.mec-weather-wind');
+        var visibility = weather_extra.children('.mec-weather-visibility');
 
         //  Events
         $('.degrees-mode').click(function()
         {
-            let degree_mode = degree.children('var').text().trim();
-            let wind_text = wind.text().substring(5);
-            let visibility_text = visibility.text().substring(11);
+            var degree_mode = degree.children('var').text().trim();
+            var wind_text = wind.text().substring(5);
+            var visibility_text = visibility.text().substring(11);
 
             if(degree_mode == degree.data('c').trim())
             {
@@ -3440,13 +3505,14 @@ function mec_focus_week(id)
             }
         });
 
+        
         // FES Speakers Adding
         $('#mec_add_speaker_button').on('click', function()
         {
-            let $this = this;
-            let content = $($this).parent().find('input');
-            let list = $('#mec-fes-speakers-list');
-            let key = list.find('.mec-error').length;
+            var $this = this;
+            var content = $($this).parent().find('input');
+            var list = $('#mec-fes-speakers-list');
+            var key = list.find('.mec-error').length;
 
             $($this).prop("disabled", true).css('cursor', 'wait');
             $.post(ajaxurl,
@@ -3462,7 +3528,7 @@ function mec_focus_week(id)
                     list.prepend(data);
                     setTimeout(function()
                     {
-                       $(`#mec-speaker-error-${key}`).remove();
+                       $('#mec-speaker-error-${key}').remove();
                     }, 1500);
                 }
                 else

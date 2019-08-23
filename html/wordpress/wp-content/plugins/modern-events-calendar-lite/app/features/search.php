@@ -252,7 +252,7 @@ class MEC_feature_search extends MEC_base
         }
 
         $query->set('tax_query', $mec_quesries);
-        $query->set('post_type', array('mec-events'));
+        $query->set('post_type', array('post','mec-events'));
 
         return $query;
     }

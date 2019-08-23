@@ -382,6 +382,20 @@ function mec_skin_style_changed(skin, style)
     jQuery('#mec_skin_'+skin+'_date_format_'+style+'_container').show();
 }
 
+function mec_show_widget_check(context)
+{
+    var skin = jQuery(context).find(':selected').data('skin');
+
+    if(skin == 'monthly_view')
+    {
+        jQuery(context).parent().parent().find('.mec-current-check-wrap').show();
+    }
+    else
+    {
+        jQuery(context).parent().parent().find('.mec-current-check-wrap').hide();
+    }
+}
+
 // TinyMce Plugins
 if (jQuery('.mec-fes-form').length < 1)
 {

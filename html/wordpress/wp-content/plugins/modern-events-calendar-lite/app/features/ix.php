@@ -156,9 +156,12 @@ class MEC_feature_ix extends MEC_base
             // Save options
             $this->main->save_ix_options(array(
                 'sync_g_import'=>isset($this->ix['sync_g_import']) ? $this->ix['sync_g_import'] : 0,
+                'sync_g_import_auto'=>isset($this->ix['sync_g_import_auto']) ? $this->ix['sync_g_import_auto'] : 0,
                 'sync_g_export'=>isset($this->ix['sync_g_export']) ? $this->ix['sync_g_export'] : 0,
+                'sync_g_export_auto'=>isset($this->ix['sync_g_export_auto']) ? $this->ix['sync_g_export_auto'] : 0,
                 'sync_f_import'=>isset($this->ix['sync_f_import']) ? $this->ix['sync_f_import'] : 0,
                 'sync_meetup_import'=>isset($this->ix['sync_meetup_import']) ? $this->ix['sync_meetup_import'] : 0,
+                'sync_meetup_import_auto'=>isset($this->ix['sync_meetup_import_auto']) ? $this->ix['sync_meetup_import_auto'] : 0,
             ));
         }
         

@@ -132,6 +132,8 @@ elseif($week_start == 5) // Friday
                     $image = !empty($event->data->featured_image['full']) ? esc_html($event->data->featured_image['full']) : '' ;
                     $price_schema = isset($event->data->meta['mec_cost']) ? $event->data->meta['mec_cost'] : '' ; 
                     $currency_schema = isset($settings['currency']) ? $settings['currency'] : '' ;
+                    $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+                    if($schema_settings == '1' ):
                     $events_str .= '
                     <script type="application/ld+json">
                     {
@@ -159,6 +161,7 @@ elseif($week_start == 5) // Friday
                     }
                     </script>
                     ';
+                    endif;
                     $events_str .= '<article data-style="'.$label_style.'" class="mec-event-article '.$this->get_event_classes($event, $is_soldout).'">';
                     $events_str .= '<div class="mec-event-image">'.$event->data->thumbnails['thumblist'].'</div>';
                     if(trim($start_time)) $events_str .= '<div class="mec-event-time mec-color"><i class="mec-sl-clock-o"></i> '.$start_time.(trim($end_time) ? ' - '.$end_time : '').'</div>';

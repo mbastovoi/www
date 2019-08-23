@@ -626,6 +626,7 @@ class MEC_factory extends MEC_base
 
         // Clear Scheduler Cronjob
         wp_clear_scheduled_hook('mec_scheduler');
+        wp_clear_scheduled_hook('mec_syncScheduler');
 	}
     
     /**
@@ -862,6 +863,7 @@ class MEC_factory extends MEC_base
 
         // Scheduler Cron job
         if(!wp_next_scheduled('mec_scheduler')) wp_schedule_event(time(), 'hourly', 'mec_scheduler');
+        if(!wp_next_scheduled('mec_syncScheduler')) wp_schedule_event(time(), 'daily', 'mec_syncScheduler');
         
         // Mark this blog as installed
         update_option('mec_installed', 1);

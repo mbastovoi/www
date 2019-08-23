@@ -4763,3 +4763,81 @@ body .crisp-client .crisp-1rjpbb7[data-last-operator-face=false] .crisp-1rf4xdh 
 body .csh-category-item a h6 {
     text-align: left;
 }
+
+/* Sync Schedule */
+.mec-form-row.mec-syn-schedule {
+    background: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, .034);
+    margin-bottom: 20px;
+}
+
+.mec-form-row.mec-syn-schedule p {
+    padding-left: 26px;
+}
+.mec-form-row.mec-syn-schedule h2 {
+    margin-top: 0;
+}
+
+.mec-form-row.mec-syn-schedule h4 {
+    margin: 10px 0;
+}
+
+/* new settings menu */
+li.wns-be-group-menu-li.mec-settings-menu .mec-settings-submenu {
+    position: absolute;
+    top: -1px;
+    right: -222px;
+    width: 220px;
+    z-index: 9;
+    background: #fff;
+    border: 1px;
+    border-style: solid;
+    border-color: #dedede;
+    margin: 0;
+    overflow: visible;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .23s ease;
+    padding-top: 8px;
+    padding-bottom: 12px;
+}
+li.wns-be-group-menu-li.mec-settings-menu:hover > .mec-settings-submenu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.mec-settings-menu .mec-settings-submenu:before {
+    position: absolute;
+    z-index: 999;
+    content: " ";
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-right-color: #fff;
+    left: -15px;
+    top: 14px;
+    border-right-color: #c5c5c5;
+    right: 0;
+}
+
+.mec-settings-menu .mec-settings-submenu:after {
+    position: absolute;
+    z-index: 999;
+    content: " ";
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-right-color: #fff;
+    left: -14px;
+    top: 14px;
+}
+
+.wns-be-sidebar .mec-settings-menu .mec-settings-submenu a {
+    background: #fff;
+    color: #636363;
+    opacity: 1;
+    font-size: 12px;
+    padding: 6px 4px 6px 26px;
+}

@@ -56,6 +56,9 @@ class MEC_feature_events extends MEC_base
         $this->factory->action('save_post', array($this, 'save_event'), 10);
         $this->factory->action('delete_post', array($this, 'delete_event'), 10);
 
+        $this->factory->filter('post_row_actions', array($this, 'action_links'), 10, 2);
+        $this->factory->action('init', array($this, 'duplicate_event'));
+
         $this->factory->action('add_meta_boxes', array($this, 'register_meta_boxes'), 1);
         $this->factory->action('restrict_manage_posts', array($this, 'add_filters'));
         $this->factory->action('pre_get_posts', array($this, 'sort'));
@@ -67,25 +70,29 @@ class MEC_feature_events extends MEC_base
         $this->factory->action('mec_metabox_details', array($this, 'meta_box_cost'), 50);
 
         // Hourly Schedule for FES
-        if (!isset($this->settings['fes_section_hourly_schedule']) or (isset($this->settings['fes_section_hourly_schedule']) and $this->settings['fes_section_hourly_schedule'])) {
+        if(!isset($this->settings['fes_section_hourly_schedule']) or (isset($this->settings['fes_section_hourly_schedule']) and $this->settings['fes_section_hourly_schedule']))
+        {
             $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_hourly_schedule'), 30);
         }
 
         // Show exceptional days if enabled
-        if (isset($this->settings['exceptional_days']) and $this->settings['exceptional_days']) {
+        if(isset($this->settings['exceptional_days']) and $this->settings['exceptional_days'])
+        {
             $this->factory->action('mec_metabox_details', array($this, 'meta_box_exceptional_days'), 25);
             $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_exceptional_days'), 25);
         }
 
         // Show Booking meta box only if booking module is enabled
         $booking_status = (isset($this->settings['booking_status']) and $this->settings['booking_status']) ? true : false;
-        if ($booking_status) {
+        if($booking_status)
+        {
             $this->factory->action('mec_metabox_booking', array($this, 'meta_box_booking_options'), 5);
             $this->factory->action('mec_metabox_booking', array($this, 'meta_box_tickets'), 10);
             $this->factory->action('mec_metabox_booking', array($this, 'meta_box_regform'), 20);
 
             // Booking Options for FES
-            if (!isset($this->settings['fes_section_booking']) or (isset($this->settings['fes_section_booking']) and $this->settings['fes_section_booking'])) {
+            if(!isset($this->settings['fes_section_booking']) or (isset($this->settings['fes_section_booking']) and $this->settings['fes_section_booking']))
+            {
                 $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_booking_options'), 35);
                 $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_tickets'), 40);
                 $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_regform'), 45);
@@ -93,21 +100,25 @@ class MEC_feature_events extends MEC_base
         }
 
         // Show fees meta box only if fees module is enabled
-        if (isset($this->settings['taxes_fees_status']) and $this->settings['taxes_fees_status']) {
+        if(isset($this->settings['taxes_fees_status']) and $this->settings['taxes_fees_status'])
+        {
             $this->factory->action('mec_metabox_booking', array($this, 'meta_box_fees'), 15);
 
             // Fees for FES
-            if ($booking_status and (!isset($this->settings['fes_section_fees']) or (isset($this->settings['fes_section_fees']) and $this->settings['fes_section_fees']))) {
+            if($booking_status and (!isset($this->settings['fes_section_fees']) or (isset($this->settings['fes_section_fees']) and $this->settings['fes_section_fees'])))
+            {
                 $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_fees'), 45);
             }
         }
 
         // Show ticket variations meta box only if the module is enabled
-        if (isset($this->settings['ticket_variations_status']) and $this->settings['ticket_variations_status']) {
+        if(isset($this->settings['ticket_variations_status']) and $this->settings['ticket_variations_status'])
+        {
             $this->factory->action('mec_metabox_booking', array($this, 'meta_box_ticket_variations'), 16);
 
             // Ticket Variations for FES
-            if ($booking_status and (!isset($this->settings['fes_section_ticket_variations']) or (isset($this->settings['fes_section_ticket_variations']) and $this->settings['fes_section_ticket_variations']))) {
+            if($booking_status and (!isset($this->settings['fes_section_ticket_variations']) or (isset($this->settings['fes_section_ticket_variations']) and $this->settings['fes_section_ticket_variations'])))
+            {
                 $this->factory->action('mec_fes_metabox_details', array($this, 'meta_box_ticket_variations'), 46);
             }
         }
@@ -2964,6 +2975,23 @@ class MEC_feature_events extends MEC_base
                 )
             );
         }
+
+        $taxonomy = 'mec_category';
+        if (wp_count_terms($taxonomy)) {
+            wp_dropdown_categories(
+                array(
+                    'show_option_all' => sprintf(__('Show all %s', 'modern-events-calendar-lite'), $this->main->m('taxonomy_categorys', __('Categories', 'modern-events-calendar-lite'))),
+                    'taxonomy' => $taxonomy,
+                    'name' => $taxonomy,
+                    'value_field' => 'slug',
+                    'orderby' => 'name',
+                    'order' => 'ASC',
+                    'selected' => (isset($_GET[$taxonomy]) ? sanitize_text_field($_GET[$taxonomy]) : ''),
+                    'show_count' => false,
+                    'hide_empty' => false,
+                )
+            );
+        }
     }
 
     /**
@@ -2981,6 +3009,7 @@ class MEC_feature_events extends MEC_base
         unset($columns['tags']);
 
         $columns['title'] = __('Title', 'modern-events-calendar-lite');
+        $columns['category'] = __('Category', 'modern-events-calendar-lite');
         $columns['location'] = $this->main->m('taxonomy_location', __('Location', 'modern-events-calendar-lite'));
         $columns['organizer'] = $this->main->m('taxonomy_organizer', __('Organizer', 'modern-events-calendar-lite'));
         $columns['start_date'] = __('Start Date', 'modern-events-calendar-lite');
@@ -3029,8 +3058,16 @@ class MEC_feature_events extends MEC_base
             echo date('Y-n-d', strtotime(get_post_meta($post_id, 'mec_end_date', true)));
         } elseif ($column_name == 'repeat') {
             $repeat_type = get_post_meta($post_id, 'mec_repeat_type', true);
-
             echo ucwords(str_replace('_', ' ', $repeat_type));
+        } elseif ($column_name == 'category') {
+            $post_categories = get_the_terms($post_id, 'mec_category');
+            if($post_categories) foreach($post_categories as $post_category) $categories[] = $post_category->name;
+            if (!empty($categories))
+            {
+                $category_name = implode(",", $categories);
+                echo $category_name;
+            }
+
         }
     }
 
@@ -3290,6 +3327,30 @@ class MEC_feature_events extends MEC_base
         }
 
         wp_redirect('edit.php?post_type=' . $this->main->get_main_post_type());
+        exit;
+    }
+
+    public function action_links($actions, $post)
+    {
+        if($post->post_type != $this->PT) return $actions;
+
+        $actions['mec-duplicate'] = '<a href="'.$this->main->add_qs_vars(array('mec-action'=>'duplicate-event', 'id'=>$post->ID)).'">'.__('Duplicate', 'modern-events-calendar-lite').'</a>';
+        return $actions;
+    }
+
+    public function duplicate_event()
+    {
+        // It's not a duplicate request
+        if(!isset($_GET['mec-action']) or (isset($_GET['mec-action']) and $_GET['mec-action'] != 'duplicate-event')) return false;
+
+        // Event ID to duplicate
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        if(!$id) return false;
+
+        // Duplicate
+        $new_post_id = $this->main->duplicate((int) $id);
+
+        wp_redirect('post.php?post=' . $new_post_id . '&action=edit');
         exit;
     }
 }

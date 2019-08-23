@@ -68,6 +68,8 @@ if($this->style == 'colorful')
             } 
             $speakers = json_encode($speakers);
         }
+        $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+        if($schema_settings == '1' ):
         ?>
         <script type="application/ld+json">
         {
@@ -94,7 +96,7 @@ if($this->style == 'colorful')
             "url"			: "<?php echo $this->main->get_event_date_permalink($event->data->permalink, $event->date['start']['date']); ?>"
         }
         </script>
-        <?php
+        <?php endif;
         echo '<article data-style="'.$label_style.'" class="mec-event-article mec-clear '.$this->get_event_classes($event).'"' . $colorful_bg_color . ' itemscope>';
         ?>
         <?php if($this->style == 'modern'): ?>

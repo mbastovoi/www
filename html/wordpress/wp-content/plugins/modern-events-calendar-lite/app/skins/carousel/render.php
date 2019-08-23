@@ -64,6 +64,10 @@ $settings = $this->main->get_settings();
                 }
             ?>
             <article data-style="<?php echo $label_style; ?>" class="mec-event-article mec-clear <?php echo $this->get_event_classes($event); ?>" itemscope>
+            <?php
+                $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+                if($schema_settings == '1' ):
+            ?>            
                 <script type="application/ld+json">
                 {
                     "@context" 		: "http://schema.org",
@@ -89,7 +93,9 @@ $settings = $this->main->get_settings();
                     "url"			: "<?php echo $this->main->get_event_date_permalink($event->data->permalink, $event->date['start']['date']); ?>"
                 }
                 </script>
-                <?php if($this->style == 'type1'):  ?>
+                <?php
+                endif;
+                if($this->style == 'type1'):  ?>
                 <div class="event-carousel-type1-head clearfix">
                     <div class="mec-event-date mec-color">
                         <div class="mec-event-image">

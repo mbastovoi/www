@@ -1,4 +1,22 @@
-﻿v 4.4.6 - 13 August 2019
+﻿v 4.4.8 - 22 August 2019
+- Fixed: Disabling Schema option
+- Fixed: Some minor issue
+
+v 4.4.7 - 21 August 2019
+- Added: Modern style search bar
+- Added: Auto set cronjobs for synchronization
+- Added: An option to not open current day in MEC widget
+- Added: ID column and sort by ID in booking menu
+- Added: Filter by ticket name in bookings menu
+- Added: Advanced clustering feature for Google Maps
+- Added: Duplicate link in event action links
+- Added: An option for disabling Schema
+- Fixed: Double tap feature for monthly calendar (simple skin)
+- Fixed: Advanced repeat type
+- Fixed: Countdown in module view and Countdown skin
+- Fixed: Carousel view and "load more" button in Internet explorer
+
+v 4.4.6 - 13 August 2019
 - Added: Ajax live search to search bar
 - Added: Filter before wp_mail (Booking Notification) for developers
 - Fixed: Simple monthly calendar style

@@ -857,7 +857,6 @@ class MEC_render extends MEC_base
      */
     function generate_advanced_days($advanced_days = array(), $event_info = array(), $maximum = 6, $today = NULL, $mode = 'render')
     {
-
         if(!count($advanced_days)) return array();
         if(!trim($today)) $today = date( 'Y-m-d', current_time( 'timestamp', 0 ));
 
@@ -896,7 +895,7 @@ class MEC_render extends MEC_base
                 'past' => 0
             );
 
-        if($mode == 'render') $i++;
+            if($mode == 'render') $i++;
         }
 
         while($i < $maximum)
@@ -943,7 +942,7 @@ class MEC_render extends MEC_base
             if(intval($month) == 12)
             {
                 $year = intval($year)+1;
-                $month = '01';
+                $month = '00';
             }
 
             $month = sprintf("%02d", intval($month)+1);
@@ -954,7 +953,7 @@ class MEC_render extends MEC_base
             $max = strtotime(reset($dates)['start']['date']);
             $pos = 0;
             
-            for($i=1; $i < count($dates); $i++)
+            for($i = 1; $i < count($dates); $i++)
             {
                 if(strtotime($dates[$i]['start']['date']) > $max)
                 {
@@ -962,6 +961,7 @@ class MEC_render extends MEC_base
                     $pos = $i;
                 }
             }
+
             unset($dates[$pos]);
         }
         

@@ -15,7 +15,7 @@ wp_enqueue_script('mec-lity-script', $this->main->asset('packages/lity/lity.min.
             <div class="mec-breadcrumbs">
                 <?php  $single->display_breadcrumb_widget( get_the_ID() ); ?>
             </div>
-        <?php endif ;?>
+        <?php endif; ?>
         <!-- end breadcrumbs --> 
         <div class="col-md-8">
             <div class="mec-events-event-image"><?php echo $event->data->thumbnails['full']; ?></div>
@@ -498,6 +498,9 @@ if(!empty($event->data->speakers))
     } 
     $speakers = json_encode($speakers);
 }
+
+$schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+if($schema_settings == '1' ):
 ?>
 <script type="application/ld+json">
 {
@@ -524,6 +527,7 @@ if(!empty($event->data->speakers))
 	"url"			: "<?php the_permalink(); ?>"
 }
 </script>
+<?php endif; ?>
 <script>
 // Fix modal speaker in some themes
 jQuery( ".mec-speaker-avatar a" ).click(function(e) {

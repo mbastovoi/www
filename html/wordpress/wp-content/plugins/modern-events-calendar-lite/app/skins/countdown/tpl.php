@@ -88,6 +88,10 @@ do_action('mec_countdown_skin_head');
 .mec-wrap .mec-event-countdown-style1 .mec-event-countdown-part2:after { border-color: transparent transparent transparent<?php echo $this->bg_color; ?>;}
 </style>
 <div class="mec-wrap <?php echo $this->html_class; ?>" id="mec_skin_<?php echo $this->id; ?>">
+<?php
+    $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+    if($schema_settings == '1' ):
+?>
     <script type="application/ld+json">
     {
         "@context" 		: "http://schema.org",
@@ -113,7 +117,9 @@ do_action('mec_countdown_skin_head');
         "url"			: "<?php echo $this->main->get_event_date_permalink($event->data->permalink, $event->date['start']['date']); ?>"
     }
     </script>
-    <?php if($this->style == 'style1'): ?>
+    <?php
+    endif;
+    if($this->style == 'style1'): ?>
     <article class="mec-event-countdown-style1 col-md-12 <?php echo $this->get_event_classes($event); ?>">
         <div class="mec-event-countdown-part1 col-md-4">
             <div class="mec-event-upcoming"><?php echo sprintf(__('%s Upcoming Event', 'modern-events-calendar-lite'), '<span>'.__('Next', 'modern-events-calendar-lite').'</span>'); ?></div>

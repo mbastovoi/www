@@ -46,6 +46,8 @@ $settings = $this->main->get_settings();
 
             $speakers = json_encode($speakers);
         }
+        $schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+        if($schema_settings == '1' ):       
         ?>
             <script type="application/ld+json">
             {
@@ -73,6 +75,7 @@ $settings = $this->main->get_settings();
             }
             </script>
             <?php
+            endif;
             $masonry_filter = '';
             if ( $this->filter_by == 'category' ) {
                 if ( isset($event->data->categories) && !empty($event->data->categories) ) :

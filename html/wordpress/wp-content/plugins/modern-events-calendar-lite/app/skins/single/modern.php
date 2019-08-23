@@ -12,7 +12,7 @@ defined('MECEXEC') or die();
             <div class="mec-breadcrumbs mec-breadcrumbs-modern">
                 <?php $breadcrumbs->display_breadcrumb_widget(get_the_ID()); ?>
             </div>
-        <?php endif ;?>
+        <?php endif; ?>
         <!-- end breadcrumbs -->
         <div class="mec-events-event-image"><?php echo $event->data->thumbnails['full']; ?><?php do_action('mec_custom_dev_image_section', $event); ?></div>
         <div class="col-md-4">
@@ -287,6 +287,8 @@ if(!empty($event->data->speakers))
 
     $speakers = json_encode($speakers);
 }
+$schema_settings = isset( $settings['schema'] ) ? $settings['schema'] : '';
+if($schema_settings == '1' ):
 ?>
 <script type="application/ld+json">
 {
@@ -315,6 +317,7 @@ if(!empty($event->data->speakers))
 	"url"			: "<?php the_permalink(); ?>"
 }
 </script>
+<?php endif; ?>
 <script>
 jQuery( ".mec-speaker-avatar a" ).click(function(e) {
     e.preventDefault();
