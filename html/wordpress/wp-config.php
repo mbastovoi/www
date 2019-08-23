@@ -29,7 +29,7 @@ if (file_exists(dirname(__FILE__). '/local.php')){
 	// Live database settings
 	define( 'DB_NAME', 'mirceab7_cutestdata' );
 	define( 'DB_USER', 'mirceab7_12' );
-	define( 'DB_PASSWORD', 'test' );
+	define( 'DB_PASSWORD', 'stvincent11' );
 	define( 'DB_HOST', 'localhost' );
 }
 
