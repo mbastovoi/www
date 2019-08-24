@@ -431,7 +431,7 @@ body {
   padding: auto;
 }
 #main-navigation .search-items .search-button {
-  border: none;
+  border: 1px;
   background-color: #FFFFFF;
   margin-top: 0.2rem;
   position: relative;

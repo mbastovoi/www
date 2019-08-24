@@ -247,7 +247,7 @@ body {
       }
     }
     .search-button {
-      border: none;
+      border: 1px;
       background-color: #FFFFFF;
       margin-top: 0.2rem;
       position: relative;
@@ -292,7 +292,7 @@ body {
           color: $third-color;
         }
       }
-      .search-items {
+      .search-items{
         background-color: transparent;
         .search-button {
           background-color: transparent;
@@ -324,7 +324,7 @@ body {
 
 
 
-.flex-wrapper {
+.flex-wrapper{
   width: 70%;
   margin: 9rem auto 3rem;
   display: flex;
