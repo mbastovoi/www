@@ -336,7 +336,7 @@ body {
   grid-gap: 1rem;
 }
 .background#events-blog .grid-container-events .blog-posts .flex-container .post-item {
-  height: 80vh;
+  height: 70vh;
 }
 .background#events-blog .grid-container-events .blog-posts .flex-container .post-item .generic-content {
   margin: 0;
