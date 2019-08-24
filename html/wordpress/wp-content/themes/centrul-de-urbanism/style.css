@@ -339,8 +339,9 @@ body {
   height: 80vh;
 }
 .background#events-blog .grid-container-events .blog-posts .flex-container .post-item .generic-content {
+  margin: 0;
   font-size: 2vh;
-  line-height: 2.5vh;
+  line-height: 3vh;
 }
 .background#events-blog .grid-container-events h1 {
   margin-top: 1rem;
