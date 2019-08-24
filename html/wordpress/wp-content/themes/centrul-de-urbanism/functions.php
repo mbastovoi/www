@@ -9,9 +9,9 @@ function urbanism_files(){
     }
 
 }
-add_action('wp_head', 'wpb_hook_javascript');
+//add_action('wp_head', 'wpb_hook_javascript');
 
-add_filter( 'wpseo_remove_reply_to_com', '__return_false' );
+//add_filter( 'wpseo_remove_reply_to_com', '__return_false' );
 
 
 function custom_short_excerpt($excerpt){
@@ -26,12 +26,6 @@ function custom_short_excerpt($excerpt){
 
 add_filter('the_excerpt', 'custom_short_excerpt');
 
-//add_filter(
-//  'the_excerpt',
-//  function ($excerpt) {
-//    return substr($excerpt,0,strpos($excerpt,'.')+1);
-//  }
-//);
 
 if( !defined(THEME_IMG_PATH)){
     define( 'THEME_IMG_PATH', get_stylesheet_directory_uri() . '/images' );
