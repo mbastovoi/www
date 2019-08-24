@@ -226,6 +226,15 @@
     width: auto;
   }
 }
+@media (min-width: 900px) and (max-width: 1500px) {
+  .blog main .flex-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .home .background#events-blog .grid-container-events {
+    width: 80%;
+  }
+}
 #respond {
   visibility: hidden;
 }
@@ -348,7 +357,7 @@ body {
 }
 
 #main-navigation {
-  width: 70vw;
+  width: 72vw;
   top: 0;
   height: 7rem;
   position: fixed;
@@ -360,7 +369,7 @@ body {
   background-color: white;
   padding-top: 3rem;
   padding-bottom: 2rem;
-  margin: 0 14.8vw;
+  margin: 0 14.5vw;
 }
 #main-navigation .logo {
   margin-top: -2rem;
@@ -428,6 +437,7 @@ body {
   position: relative;
   right: 0;
   padding: 4px;
+  margin-right: 4rem;
 }
 #main-navigation .search-items .search-button.none {
   display: none;

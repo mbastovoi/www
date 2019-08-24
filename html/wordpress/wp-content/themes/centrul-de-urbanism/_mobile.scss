@@ -297,3 +297,26 @@ main{
     }
   }
 }
+
+
+@media  (min-width: 900px) and (max-width: 1500px) {
+  .blog {
+    main {
+      .flex-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+  .home {
+    .background{
+      &#events-blog{
+        .grid-container-events {
+          width: 80%;
+        }
+      }
+    }
+  }
+
+}
+
+
