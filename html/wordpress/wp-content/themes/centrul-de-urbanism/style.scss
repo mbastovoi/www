@@ -126,6 +126,13 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1rem;
+        .post-item {
+          height: 80vh;
+          .generic-content {
+            font-size: 2vh;
+            line-height: 2.5vh;
+          }
+        }
       }
     }
 
@@ -791,7 +798,7 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
   width: 70%;
-  grid-auto-rows: 17rem;
+  grid-auto-rows: 30vh;
   margin: 10rem auto;
 
 
