@@ -1014,11 +1014,14 @@ body {
   grid-template-columns: 1fr 1fr;
   width: 70%;
   margin: 14rem auto;
+  grid-gap: 0;
 }
 .contact-grid .footer-items {
   grid-template-columns: 1fr;
   margin-top: -2rem;
-  justify-self: flex-end;
+  justify-self: start;
+  align-self: end;
+  margin: 1rem 0rem;
 }
 .contact-grid #map {
   height: 400px;

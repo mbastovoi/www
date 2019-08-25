@@ -9,7 +9,7 @@ function urbanism_files(){
     }
 
 }
-//add_action('wp_head', 'wpb_hook_javascript');
+add_action('wp_head', 'wpb_hook_javascript');
 
 //add_filter( 'wpseo_remove_reply_to_com', '__return_false' );
 
